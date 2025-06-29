@@ -39,6 +39,7 @@ io.on('connection', (socket) => {
 
   // Join room
   socket.on('join-room', ({ roomId, username, isHost }) => {
+    roomId = roomId.toUpperCase();
     socket.join(roomId)
     
     // Initialize room if it doesn't exist
