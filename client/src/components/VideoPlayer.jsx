@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Maximize } from 'lucide-react'
-import { io } from 'socket.io-client'
 
-const VideoPlayer = ({ roomId, username, isHost }) => {
+const VideoPlayer = ({ roomId, username, isHost, socket, roomState }) => {
   const [videoUrl, setVideoUrl] = useState('')
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
@@ -12,82 +11,86 @@ const VideoPlayer = ({ roomId, username, isHost }) => {
   const [isMuted, setIsMuted] = useState(false)
   const [showControls, setShowControls] = useState(true)
   const [isFullscreen, setIsFullscreen] = useState(false)
-  
+  const [isLoading, setIsLoading] = useState(false)
+
   const containerRef = useRef(null)
-  const socketRef = useRef(null)
+  const videoRef = useRef(null)
   const controlsTimeoutRef = useRef(null)
 
   // Helper to check if the video is a Google Drive embed
-  const isGoogleDrive = videoUrl.includes('drive.google.com')
+  const isGoogleDrive = videoUrl && videoUrl.includes('drive.google.com')
 
+  // Update local state when room state changes
   useEffect(() => {
-    // Connect to Socket.IO server
-    socketRef.current = io(import.meta.env.VITE_SERVER_URL || 'http://localhost:3001')
-    
-    socketRef.current.emit('join-room', { roomId, username, isHost })
-    
-    // Socket event listeners
-    socketRef.current.on('video-play', () => {
-      setIsPlaying(true)
-    })
-    
-    socketRef.current.on('video-pause', () => {
-      setIsPlaying(false)
-    })
-    
-    socketRef.current.on('video-seek', (time) => {
-      setCurrentTime(time)
-    })
-    
-    socketRef.current.on('video-url-change', (url) => {
-      setVideoUrl(url)
-    })
-    
-    socketRef.current.on('sync-time', (time) => {
-      setCurrentTime(time)
-    })
+    if (roomState) {
+      setVideoUrl(roomState.videoUrl || '')
+      setIsPlaying(roomState.isPlaying || false)
+      setCurrentTime(roomState.currentTime || 0)
+    }
+  }, [roomState])
 
-    return () => {
-      if (socketRef.current) {
-        socketRef.current.disconnect()
+  // Sync video element with state
+  useEffect(() => {
+    if (videoRef.current && !isGoogleDrive) {
+      if (isPlaying) {
+        videoRef.current.play()
+      } else {
+        videoRef.current.pause()
       }
     }
-  }, [roomId, username, isHost])
+  }, [isPlaying, isGoogleDrive])
+
+  useEffect(() => {
+    if (videoRef.current && !isGoogleDrive) {
+      videoRef.current.currentTime = currentTime
+    }
+  }, [currentTime, isGoogleDrive])
+
+  useEffect(() => {
+    if (videoRef.current && !isGoogleDrive) {
+      videoRef.current.volume = isMuted ? 0 : volume
+    }
+  }, [volume, isMuted, isGoogleDrive])
 
   const togglePlay = () => {
-    if (isHost) {
+    if (isHost && socket) {
       const newPlayingState = !isPlaying
       setIsPlaying(newPlayingState)
-      socketRef.current?.emit(newPlayingState ? 'video-play' : 'video-pause', { roomId })
+      socket.emit(newPlayingState ? 'video-play' : 'video-pause', { roomId: roomId.toUpperCase() })
     }
   }
 
   const skipBackward = () => {
-    if (isHost) {
+    if (isHost && socket) {
       const newTime = Math.max(0, currentTime - 10)
       setCurrentTime(newTime)
-      socketRef.current?.emit('video-seek', { roomId, time: newTime })
+      socket.emit('video-seek', { roomId: roomId.toUpperCase(), time: newTime })
     }
   }
 
   const skipForward = () => {
-    if (isHost) {
+    if (isHost && socket) {
       const newTime = Math.min(duration, currentTime + 10)
       setCurrentTime(newTime)
-      socketRef.current?.emit('video-seek', { roomId, time: newTime })
+      socket.emit('video-seek', { roomId: roomId.toUpperCase(), time: newTime })
     }
   }
 
   const handleSeek = (e) => {
-    if (!isHost) return
-    
+    if (!isHost || !socket) return
     const rect = e.currentTarget.getBoundingClientRect()
     const clickX = e.clientX - rect.left
     const percentage = clickX / rect.width
     const newTime = percentage * duration
-    
     setCurrentTime(newTime)
-    socketRef.current?.emit('video-seek', { roomId, time: newTime })
+    socket.emit('video-seek', { roomId: roomId.toUpperCase(), time: newTime })
+  }
+
+  const handleVideoUrlSubmit = (url) => {
+    if (socket) {
+      setVideoUrl(url)
+      socket.emit('video-url-change', { roomId: roomId.toUpperCase(), url })
+    }
   }
 
   const toggleMute = () => {
@@ -150,42 +153,84 @@ const VideoPlayer = ({ roomId, username, isHost }) => {
         >
           <div className="text-center p-8 glass-effect rounded-xl max-w-md">
             <h3 className="text-xl font-semibold text-white mb-4">Add a Video</h3>
-            <input
-              type="text"
-              placeholder="Paste Google Drive video URL"
-              className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg 
-                         focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
-                         text-white placeholder-gray-400 backdrop-blur-sm mb-4"
-              onKeyPress={(e) => {
-                if (e.key === 'Enter' && e.target.value) {
-                  setVideoUrl(e.target.value)
-                  socketRef.current?.emit('video-url-change', { roomId, url: e.target.value })
-                }
-              }}
-            />
-            <p className="text-sm text-gray-400">
-              Paste a Google Drive video sharing link
-            </p>
+            {isHost ? (
+              <>
+                <input
+                  type="text"
+                  placeholder="Paste Google Drive video URL or direct video link"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg \
+                             focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent\
+                             text-white placeholder-gray-400 backdrop-blur-sm mb-4"
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter' && e.target.value) {
+                      handleVideoUrlSubmit(e.target.value.trim())
+                    }
+                  }}
+                />
+                <p className="text-sm text-gray-400">
+                  As the host, you can add a Google Drive video link or direct video URL
+                </p>
+              </>
+            ) : (
+              <p className="text-sm text-gray-400">
+                Waiting for the host to add a video...
+              </p>
+            )}
           </div>
         </motion.div>
       )}
 
       {/* Video Player */}
       {videoUrl && isGoogleDrive && (
-        <iframe
-          src={getGoogleDriveEmbedUrl(videoUrl)}
-          className="w-full h-full rounded-lg"
-          allowFullScreen
-          allow="autoplay; encrypted-media"
-          title="Video Player"
-        />
+        <div className="relative w-full h-full">
+          {isLoading && (
+            <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-lg z-10">
+              <div className="text-white">Loading video...</div>
+            </div>
+          )}
+          <iframe
+            src={getGoogleDriveEmbedUrl(videoUrl)}
+            className="w-full h-full rounded-lg"
+            allowFullScreen
+            allow="autoplay; encrypted-media"
+            title="Video Player"
+            onLoad={() => setIsLoading(false)}
+          />
+        </div>
       )}
       {videoUrl && !isGoogleDrive && (
-        <video
-          src={videoUrl}
-          controls={false}
-          className="w-full h-full rounded-lg"
-        />
+        <div className="relative w-full h-full">
+          {isLoading && (
+            <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-lg z-10">
+              <div className="text-white">Loading video...</div>
+            </div>
+          )}
+          <video
+            ref={videoRef}
+            src={videoUrl}
+            controls={false}
+            className="w-full h-full rounded-lg"
+            onLoadStart={() => setIsLoading(true)}
+            onCanPlay={(e) => {
+              setIsLoading(false)
+              setDuration(e.target.duration)
+            }}
+            onTimeUpdate={(e) => {
+              if (!isHost) {
+                setCurrentTime(e.target.currentTime)
+              }
+              // Host syncs time every 5 seconds
+              if (isHost && socket) {
+                const time = e.target.currentTime
+                setCurrentTime(time)
+                if (Math.floor(time) % 5 === 0) {
+                  socket.emit('sync-time', { roomId: roomId.toUpperCase(), time })
+                }
+              }
+            }}
+            autoPlay={isPlaying}
+          />
+        </div>
       )}
 
       {/* Custom Controls: Only show if NOT Google Drive */}
@@ -195,6 +240,14 @@ const VideoPlayer = ({ roomId, username, isHost }) => {
           animate={{ opacity: showControls ? 1 : 0 }}
           className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4"
         >
+          {/* Host/Member Indicator */}
+          <div className="text-center mb-2">
+            <span className={`text-xs px-2 py-1 rounded-full ${
+              isHost ? 'bg-yellow-500/20 text-yellow-300' : 'bg-blue-500/20 text-blue-300'
+            }`}>
+              {isHost ? 'Host' : 'Member'}
+            </span>
+          </div>
           {/* Progress Bar */}
           <div 
             className="w-full h-2 bg-white/20 rounded-full cursor-pointer mb-4"
