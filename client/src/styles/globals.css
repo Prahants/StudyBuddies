@@ -55,13 +55,12 @@
   }
   
   .control-button {
-    @apply p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-200 
-           backdrop-blur-sm border border-white/20 hover:scale-105 active:scale-95;
+    @apply p-3 rounded-full bg-white/10 hover:bg-white/15 transition-all duration-200 
+           backdrop-blur-sm border border-white/15 hover:scale-105 active:scale-95;
   }
   
   .room-card {
-    @apply glass-effect rounded-xl p-6 hover:scale-105 transition-all duration-300 
-           hover:shadow-xl hover:shadow-glow-blue/20;
+    @apply glass-effect rounded-xl p-6 transition-all duration-300;
   }
   
   .floating-particles {

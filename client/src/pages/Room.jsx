@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
 import { useParams, useLocation, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Users, Copy, Settings } from 'lucide-react'
+import { ArrowLeft, Users, Copy, Settings, Mic, Sparkles, X } from 'lucide-react'
 import { io } from 'socket.io-client'
 import VideoPlayer from '../components/VideoPlayer'
 import VoiceChat from '../components/VoiceChat'
 import RoomControls from '../components/RoomControls'
+import Chat from '../components/Chat'
+import GeminiChat from '../components/GeminiChat';
 
 const Room = () => {
   const { roomId } = useParams()
@@ -23,6 +25,7 @@ const Room = () => {
   const [showVoiceChat, setShowVoiceChat] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
   const [connectionStatus, setConnectionStatus] = useState('connecting')
+  const [geminiOpen, setGeminiOpen] = useState(false);
   
   const socketRef = useRef(null)
 
@@ -80,18 +83,17 @@ const Room = () => {
 
     socket.on('user-joined', ({ userId, username: joinedUsername, isHost: joinedIsHost }) => {
       console.log(`${joinedUsername} joined the room`)
-      setUsers(prev => {
-        // Check if user already exists
-        const existingUser = prev.find(u => u.id === userId)
-        if (existingUser) return prev
-        
-        return [...prev, {
-          id: userId,
-          username: joinedUsername,
-          isHost: joinedIsHost,
-          joinedAt: new Date()
-        }]
-      })
+      // setUsers(prev => {
+      //   // Check if user already exists
+      //   const existingUser = prev.find(u => u.id === userId)
+      //   if (existingUser) return prev
+      //   return [...prev, {
+      //     id: userId,
+      //     username: joinedUsername,
+      //     isHost: joinedIsHost,
+      //     joinedAt: new Date()
+      //   }]
+      // })
     })
 
     socket.on('user-left', ({ userId, username: leftUsername }) => {
@@ -234,6 +236,17 @@ const Room = () => {
             >
               <Settings className="w-4 h-4" />
             </motion.button>
+
+            {/* Voice Chat Toggle */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setShowVoiceChat(!showVoiceChat)}
+              className={`control-button ${showVoiceChat ? 'bg-green-500/20 border-green-500/30' : ''}`}
+              title="Toggle Voice Chat"
+            >
+              <Mic className="w-5 h-5" />
+            </motion.button>
           </div>
         </div>
       </motion.header>
@@ -241,7 +254,7 @@ const Room = () => {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto p-4">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Video Player */}
+          {/* Video Player and Gemini Chat in main column */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -255,6 +268,29 @@ const Room = () => {
               socket={socketRef.current}
               roomState={roomState}
             />
+            {/* Gemini Button below video */}
+            {!geminiOpen && (
+              <button
+                className={`flex items-center gap-2 my-4 px-4 py-2 rounded-lg bg-white/10 text-white font-semibold shadow transition${!geminiOpen ? ' hover:bg-white/20' : ''}`}
+                onClick={() => setGeminiOpen(true)}
+              >
+                <Sparkles className="w-5 h-5 text-primary" />
+                <span>Gemini</span>
+              </button>
+            )}
+            {/* Gemini Chat Panel below button */}
+            {geminiOpen && (
+              <div className="room-card p-0 mt-4 relative">
+                <button
+                  className="absolute top-2 right-2 bg-black/30 hover:bg-black/60 text-white rounded-full p-1 z-10"
+                  onClick={() => setGeminiOpen(false)}
+                  aria-label="Close Gemini Chat"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+                <GeminiChat roomId={roomId} username={username} />
+              </div>
+            )}
           </motion.div>
 
           {/* Sidebar */}
@@ -264,6 +300,12 @@ const Room = () => {
             transition={{ delay: 0.4 }}
             className="space-y-4"
           >
+            {/* Chat */}
+            <Chat 
+              roomId={roomId}
+              username={username}
+              socket={socketRef.current}
+            />
             {/* Voice Chat */}
             <VoiceChat 
               roomId={roomId}
@@ -271,14 +313,12 @@ const Room = () => {
               isOpen={showVoiceChat}
               onToggle={() => setShowVoiceChat(!showVoiceChat)}
             />
-
             {/* Room Controls */}
             <RoomControls 
               roomId={roomId}
               username={username}
               isHost={isHost}
             />
-
             {/* Users List */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -290,7 +330,6 @@ const Room = () => {
                 <Users className="w-5 h-5 mr-2" />
                 Room Members ({users.length})
               </h3>
-              
               <div className="space-y-2">
                 {users.map((user, index) => (
                   <motion.div
@@ -311,7 +350,6 @@ const Room = () => {
                     )}
                   </motion.div>
                 ))}
-                
                 {/* Show message if no other users */}
                 {users.length === 0 && (
                   <div className="text-center py-4">
