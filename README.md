@@ -1,21 +1,25 @@
-# 🎬 Movie Sync App
+# 🎓 StudyBuddies
 
-A real-time movie streaming application with synchronized playback and voice chat capabilities.
+An AI-enhanced group study application that integrates Gemini AI to provide real-time academic assistance within collaborative study rooms. Students can chat, upload PDFs or images, and ask questions to Gemini, which responds instantly using Google's Generative AI.
 
 ## ✨ Features
 
-- 🎥 **Sync Playback**: Real-time synchronized video playback for multiple users
-- 🔊 **Voice Chat**: Live voice communication between users
-- 🎨 **Dark Theme**: Beautiful ambient glow effects like YouTube
-- 🔗 **Google Drive Integration**: Stream movies directly from Google Drive
-- 🌐 **Real-time Sync**: Socket.IO powered synchronization
-- 📱 **Responsive Design**: Works on desktop and mobile devices
+- 🤖 **Gemini AI Integration**: Real-time academic assistance with Google's Generative AI
+- 📚 **File Upload & Preview**: Upload PDFs and images for AI analysis
+- 💬 **Real-time Chat**: Socket.IO powered messaging with typing indicators
+- 🎥 **Video Collaboration**: Synchronized video playback for study sessions
+- 🔊 **Voice Chat**: Live voice communication between study partners
+- 🎨 **Modern UI**: Beautiful ambient glow effects and responsive design
+- 📱 **Cross-platform**: Works seamlessly on desktop and mobile devices
+- 💾 **Data Persistence**: MongoDB storage with local storage fallback
 
 ## 🏗️ Architecture
 
 ```
 /client (React + Vite)
   ├── /components
+  │   ├── Chat.jsx
+  │   ├── GeminiChat.jsx
   │   ├── VideoPlayer.jsx
   │   ├── VoiceChat.jsx
   │   ├── RoomControls.jsx
@@ -30,8 +34,8 @@ A real-time movie streaming application with synchronized playback and voice cha
 
 /server (Node.js + Express + Socket.IO)
   ├── server.js
-  ├── /routes
-  └── /socket
+  ├── /models
+  └── /uploads
 ```
 
 ## 🚀 Quick Start
@@ -39,13 +43,15 @@ A real-time movie streaming application with synchronized playback and voice cha
 ### Prerequisites
 - Node.js 18+ 
 - npm or yarn
+- MongoDB (for production)
+- Google AI API key (for Gemini integration)
 
 ### Installation
 
 1. **Clone and install dependencies:**
 ```bash
-git clone <repository-url>
-cd movie-sync-app
+git clone https://github.com/Prahants/StudyBuddies.git
+cd StudyBuddies
 npm run install:all
 ```
 
@@ -56,7 +62,11 @@ cp client/.env.example client/.env
 cp server/.env.example server/.env
 ```
 
-3. **Start development servers:**
+3. **Configure your environment variables:**
+   - Add your Google AI API key for Gemini integration
+   - Configure MongoDB connection (optional for production)
+
+4. **Start development servers:**
 ```bash
 npm run dev
 ```
@@ -67,18 +77,19 @@ This will start:
 
 ## 🎯 Usage
 
-1. **Create/Join Room**: Enter a room code to start or join a session
-2. **Add Movie**: Paste a Google Drive video link
-3. **Sync Controls**: Use the shared controls to play/pause/skip
-4. **Voice Chat**: Enable microphone for live voice communication
+1. **Create/Join Study Room**: Enter a room code to start or join a study session
+2. **Chat with AI**: Ask Gemini AI questions about your study materials
+3. **Upload Files**: Share PDFs or images for AI analysis
+4. **Collaborate**: Use real-time chat and voice features
+5. **Video Sync**: Watch educational videos together with synchronized playback
 
 ## 🛠️ Tech Stack
 
-| Frontend | Backend | Communication | Hosting |
-|----------|---------|---------------|---------|
-| React 18 | Node.js | Socket.IO | Vercel |
-| Vite | Express.js | WebRTC | Railway |
-| TailwindCSS | CORS | PeerJS | |
+| Frontend | Backend | AI & Communication | Database |
+|----------|---------|-------------------|----------|
+| React 18 | Node.js | Gemini AI | MongoDB |
+| Vite | Express.js | Socket.IO | Local Storage |
+| TailwindCSS | CORS | WebRTC | |
 | Framer Motion | | | |
 
 ## 🔧 Configuration
@@ -88,15 +99,30 @@ This will start:
 **Client (.env):**
 ```env
 VITE_SERVER_URL=http://localhost:3001
-VITE_GOOGLE_API_KEY=your_google_api_key
+VITE_GOOGLE_API_KEY=your_google_ai_api_key
 ```
 
 **Server (.env):**
 ```env
 PORT=3001
 CORS_ORIGIN=http://localhost:5173
-GOOGLE_API_KEY=your_google_api_key
+GOOGLE_API_KEY=your_google_ai_api_key
+MONGODB_URI=your_mongodb_connection_string
 ```
+
+## 🤖 AI Features
+
+### Gemini Integration
+- **Real-time Q&A**: Ask questions and get instant responses from Google's Generative AI
+- **File Analysis**: Upload PDFs and images for AI-powered analysis
+- **Contextual Responses**: AI maintains context throughout your study session
+- **Academic Focus**: Optimized for educational content and explanations
+
+### Smart Features
+- **Typing Indicators**: See when others are typing
+- **Message History**: Persistent chat history with MongoDB storage
+- **File Previews**: View uploaded documents before AI analysis
+- **Fallback Storage**: Local storage ensures functionality during downtime
 
 ## 📦 Deployment
 
@@ -113,6 +139,14 @@ cd server
 # Deploy to Railway or Render
 ```
 
+## 🎓 Study Session Features
+
+- **Collaborative Learning**: Multiple students can join study rooms
+- **AI-Powered Assistance**: Get help with complex topics instantly
+- **File Sharing**: Upload study materials for group analysis
+- **Real-time Communication**: Voice and text chat for seamless collaboration
+- **Video Synchronization**: Watch educational content together
+
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -122,4 +156,8 @@ cd server
 
 ## 📄 License
 
-MIT License - see LICENSE file for details 
+MIT License - see LICENSE file for details
+
+## 🌟 About
+
+StudyBuddies is designed to revolutionize group study sessions by combining the power of AI with real-time collaboration. Whether you're preparing for exams, working on group projects, or simply need help understanding complex topics, StudyBuddies provides an innovative learning environment where students can connect, collaborate, and get instant clarity on their doubts from AI. 
