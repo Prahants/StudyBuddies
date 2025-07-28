@@ -1,7 +1,7 @@
 {
-  "name": "movie-sync-app",
+  "name": "study-buddies",
   "version": "1.0.0",
-  "description": "Movie streaming app with sync playback and voice chat",
+  "description": "Study Buddies",
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",

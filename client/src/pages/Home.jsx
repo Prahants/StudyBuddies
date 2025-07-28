@@ -42,10 +42,10 @@ const Home = () => {
         >
           <div className="flex items-center justify-center mb-4">
             <Sparkles className="w-8 h-8 text-primary mr-2" />
-            <h1 className="text-4xl font-bold text-gradient">Movie Sync</h1>
+            <h1 className="text-4xl font-bold text-gradient">Study Buddies</h1>
           </div>
           <p className="text-gray-400 text-lg">
-            Watch movies together with friends in real-time
+            Learn together with friends in real-time
           </p>
         </motion.div>
 
