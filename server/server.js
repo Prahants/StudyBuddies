@@ -35,17 +35,21 @@ app.use(cors({
 app.use(express.json())
 
 // MongoDB connection with better error handling
-mongoose.connect(process.env.MONGO_URI, { 
-  serverSelectionTimeoutMS: 5000, // 5 second timeout
-  socketTimeoutMS: 45000, // 45 second timeout
-  maxPoolSize: 10,
-  retryWrites: true
-})
-.then(() => console.log('MongoDB connected'))
-.catch(err => {
-  console.error('MongoDB connection error:', err);
-  // Don't crash the server, just log the error
-});
+if (process.env.MONGO_URI) {
+  mongoose.connect(process.env.MONGO_URI, { 
+    serverSelectionTimeoutMS: 5000, // 5 second timeout
+    socketTimeoutMS: 45000, // 45 second timeout
+    maxPoolSize: 10,
+    retryWrites: true
+  })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => {
+    console.error('MongoDB connection error:', err);
+    // Don't crash the server, just log the error
+  });
+} else {
+  console.log('MongoDB URI not provided - running without database');
+}
 
 // Chat schema
 const ChatSchema = new mongoose.Schema({
@@ -59,7 +63,13 @@ const ChatSchema = new mongoose.Schema({
 const Chat = mongoose.model('Chat', ChatSchema);
 
 // Gemini AI setup
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+let genAI = null;
+if (process.env.GOOGLE_API_KEY) {
+  genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+  console.log('Gemini AI initialized');
+} else {
+  console.log('Google API key not provided - AI features will be limited');
+}
 
 // Multer setup for file uploads (local storage for now)
 const upload = multer({
@@ -177,6 +187,55 @@ app.post('/api/gemini', async (req, res) => {
   const isMongoConnected = mongoose.connection.readyState === 1;
   
   try {
+    if (!genAI) {
+      const fallbackResponse = "I'm sorry, but AI features are currently unavailable. Please check your API configuration.";
+      
+      if (isMongoConnected) {
+        try {
+          console.log('💬 Inserting fallback response into MongoDB...');
+          const inserted = await Chat.insertMany([
+            { roomId, username, message: prompt, role: 'user', files, timestamp: new Date() },
+            { roomId, username: 'Gemini AI', message: fallbackResponse, role: 'gemini', files: [], timestamp: new Date() }
+          ]);
+          console.log('✅ Fallback messages inserted:', inserted.length);
+        } catch (insertErr) {
+          console.error('❌ MongoDB insert failed:', insertErr);
+          // Fallback to local storage
+          if (!localChatStorage.has(roomId)) {
+            localChatStorage.set(roomId, []);
+          }
+          const roomChats = localChatStorage.get(roomId);
+          roomChats.push(
+            { roomId, username, message: prompt, role: 'user', files, timestamp: new Date() },
+            { roomId, username: 'Gemini AI', message: fallbackResponse, role: 'gemini', files: [], timestamp: new Date() }
+          );
+          localChatStorage.set(roomId, roomChats);
+          console.log('✅ Fallback messages saved to local storage');
+        }
+      } else {
+        // MongoDB not connected, use local storage
+        if (!localChatStorage.has(roomId)) {
+          localChatStorage.set(roomId, []);
+        }
+        const roomChats = localChatStorage.get(roomId);
+        roomChats.push(
+          { roomId, username, message: prompt, role: 'user', files, timestamp: new Date() },
+          { roomId, username: 'Gemini AI', message: fallbackResponse, role: 'gemini', files: [], timestamp: new Date() }
+        );
+        localChatStorage.set(roomId, roomChats);
+        console.log('✅ Fallback messages saved to local storage (MongoDB not connected)');
+      }
+
+      res.json({ reply: fallbackResponse });
+      // Emit real-time Gemini chat to all clients in the room
+      io.to(roomId).emit('gemini-message', [
+        { roomId, username, message: prompt, role: 'user', files, timestamp: new Date() },
+        { roomId, username: 'Gemini AI', message: fallbackResponse, role: 'gemini', files: [], timestamp: new Date() }
+      ]);
+      console.log('Emitted fallback gemini-message to room', roomId, 'with user', username);
+      return;
+    }
+    
     const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
     const result = await model.generateContent(prompt);
     const geminiReply = result.response.text();
