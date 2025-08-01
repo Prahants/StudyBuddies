@@ -1,251 +1,158 @@
-# 🚀 Deployment Guide
+# 🚀 StudyBuddies Deployment Guide
 
-This guide covers deploying the Movie Sync App to both development and production environments.
+This guide will help you deploy your StudyBuddies application to Render.
 
-## 🛠️ Development Setup
+## 📋 Prerequisites
 
-### Prerequisites
-- Node.js 18+
-- npm or yarn
+1. **Render Account**: Sign up at [render.com](https://render.com)
+2. **GitHub Repository**: Your code should be on GitHub
+3. **Environment Variables**: Prepare your API keys and configuration
 
-### Quick Start
-```bash
-# Clone the repository
-git clone <your-repo-url>
-cd movie-sync-app
+## 🔧 Environment Variables Setup
 
-# Run the setup script
-./setup.sh
+### Backend Environment Variables
 
-# Start development servers
-npm run dev
-```
+You'll need to set these in your Render backend service:
 
-This will start:
-- Frontend: http://localhost:5173
-- Backend: http://localhost:3001
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `NODE_ENV` | Environment | `production` |
+| `PORT` | Server port | `10000` |
+| `CORS_ORIGIN` | Frontend URL | `https://your-frontend.onrender.com` |
+| `GOOGLE_API_KEY` | Google AI API key | `your_google_ai_key` |
+| `MONGO_URI` | MongoDB connection string | `mongodb+srv://...` |
+| `PEER_HOST` | PeerJS host | `your-backend.onrender.com` |
+| `PEER_PORT` | PeerJS port | `443` |
 
-## 🌐 Production Deployment
+### Frontend Environment Variables
 
-### Frontend (Vercel)
+Set these in your Render frontend service:
 
-1. **Connect to Vercel**
-   ```bash
-   # Install Vercel CLI
-   npm i -g vercel
-   
-   # Login to Vercel
-   vercel login
-   ```
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `VITE_SERVER_URL` | Backend API URL | `https://your-backend.onrender.com` |
+| `VITE_GOOGLE_API_KEY` | Google API key (optional) | `your_google_api_key` |
 
-2. **Deploy**
-   ```bash
-   # Build the client
-   cd client
-   npm run build
-   
-   # Deploy to Vercel
-   vercel --prod
-   ```
+## 🚀 Deployment Steps
 
-3. **Environment Variables**
-   - Go to your Vercel dashboard
-   - Add environment variable: `VITE_SERVER_URL` = your backend URL
+### Option 1: Using render.yaml (Recommended)
 
-### Backend (Railway/Render)
-
-#### Option 1: Railway
-
-1. **Connect Repository**
-   - Go to [Railway](https://railway.app)
+1. **Push your code to GitHub** with the `render.yaml` file
+2. **Connect to Render**:
+   - Go to [render.com](https://render.com)
+   - Click "New +" → "Blueprint"
    - Connect your GitHub repository
-   - Select the `server` directory
+   - Render will automatically detect the `render.yaml` file
 
-2. **Environment Variables**
-   ```env
-   PORT=3001
-   NODE_ENV=production
-   CORS_ORIGIN=https://your-frontend-domain.vercel.app
-   ```
+### Option 2: Manual Deployment
 
-3. **Deploy**
-   - Railway will automatically deploy on push to main branch
+#### Backend Deployment
 
-#### Option 2: Render
-
-1. **Create Web Service**
-   - Go to [Render](https://render.com)
-   - Create new Web Service
+1. **Create Web Service**:
+   - Go to Render Dashboard
+   - Click "New +" → "Web Service"
    - Connect your GitHub repository
 
-2. **Configuration**
-   - **Build Command**: `cd server && npm install`
-   - **Start Command**: `cd server && npm start`
-   - **Root Directory**: `server`
-
-3. **Environment Variables**
-   ```env
-   PORT=3001
-   NODE_ENV=production
-   CORS_ORIGIN=https://your-frontend-domain.vercel.app
+2. **Configure Backend Service**:
+   ```
+   Name: studybuddies-backend
+   Environment: Node
+   Build Command: cd server && npm install
+   Start Command: cd server && npm start
    ```
 
-### Alternative: Heroku
+3. **Set Environment Variables** (see table above)
 
-1. **Create Heroku App**
-   ```bash
-   # Install Heroku CLI
-   # Create app
-   heroku create your-app-name
-   
-   # Set buildpacks
-   heroku buildpacks:set heroku/nodejs
+#### Frontend Deployment
+
+1. **Create Static Site**:
+   - Go to Render Dashboard
+   - Click "New +" → "Static Site"
+   - Connect your GitHub repository
+
+2. **Configure Frontend Service**:
+   ```
+   Name: studybuddies-frontend
+   Build Command: cd client && npm install && npm run build
+   Publish Directory: client/dist
    ```
 
-2. **Deploy**
-   ```bash
-   # Deploy to Heroku
-   git subtree push --prefix server heroku main
-   ```
+3. **Set Environment Variables** (see table above)
 
-3. **Environment Variables**
-   ```bash
-   heroku config:set NODE_ENV=production
-   heroku config:set CORS_ORIGIN=https://your-frontend-domain.vercel.app
-   ```
+## 🔑 Required API Keys
 
-## 🔧 Environment Configuration
+### Google AI API Key
+1. Go to [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Create a new API key
+3. Add it to your backend environment variables as `GOOGLE_API_KEY`
 
-### Frontend (.env)
-```env
-VITE_SERVER_URL=https://your-backend-domain.com
-VITE_GOOGLE_API_KEY=your_google_api_key_here
-```
+### MongoDB (Optional)
+1. Create a free MongoDB Atlas cluster
+2. Get your connection string
+3. Add it to your backend environment variables as `MONGO_URI`
 
-### Backend (.env)
-```env
-PORT=3001
-NODE_ENV=production
-CORS_ORIGIN=https://your-frontend-domain.vercel.app
-GOOGLE_API_KEY=your_google_api_key_here
-```
+## 🌐 Custom Domains
 
-## 🌍 Domain Configuration
+After deployment, you can add custom domains:
 
-### Custom Domain (Optional)
+1. **Backend**: `api.yourdomain.com`
+2. **Frontend**: `yourdomain.com`
 
-1. **Frontend (Vercel)**
-   - Go to Vercel dashboard
-   - Add custom domain
-   - Configure DNS records
-
-2. **Backend (Railway/Render)**
-   - Use provided subdomain or add custom domain
-   - Update CORS_ORIGIN in environment variables
-
-## 🔒 Security Considerations
-
-### Production Checklist
-- [ ] Use HTTPS for all connections
-- [ ] Set proper CORS origins
-- [ ] Use environment variables for sensitive data
-- [ ] Enable rate limiting (consider adding to server)
-- [ ] Set up monitoring and logging
-
-### Google Drive API (Optional)
-For enhanced Google Drive integration:
-
-1. **Create Google Cloud Project**
-   - Go to [Google Cloud Console](https://console.cloud.google.com)
-   - Create new project
-   - Enable Google Drive API
-
-2. **Create API Key**
-   - Go to APIs & Services > Credentials
-   - Create API Key
-   - Restrict to Google Drive API
-
-3. **Add to Environment**
-   ```env
-   VITE_GOOGLE_API_KEY=your_api_key_here
-   GOOGLE_API_KEY=your_api_key_here
-   ```
-
-## 📊 Monitoring
-
-### Health Check
-Your backend includes a health check endpoint:
-```
-GET https://your-backend-domain.com/health
-```
-
-### Room Information
-```
-GET https://your-backend-domain.com/api/rooms
-GET https://your-backend-domain.com/api/rooms/:roomId
-```
-
-## 🐛 Troubleshooting
+## 🔍 Troubleshooting
 
 ### Common Issues
 
-1. **CORS Errors**
-   - Ensure CORS_ORIGIN is set correctly
-   - Check that frontend URL matches exactly
+1. **Build Failures**:
+   - Check that all dependencies are in `package.json`
+   - Ensure build commands are correct
+   - Verify environment variables are set
 
-2. **Socket.IO Connection Issues**
-   - Verify server URL in frontend environment
-   - Check that server is running and accessible
+2. **CORS Errors**:
+   - Make sure `CORS_ORIGIN` points to your frontend URL
+   - Include protocol (https://)
 
-3. **Voice Chat Not Working**
-   - Ensure PeerJS server is running
-   - Check browser permissions for microphone
+3. **Socket.IO Issues**:
+   - Verify WebSocket connections are enabled
+   - Check that the backend URL is correct in frontend
 
-4. **Video Not Loading**
-   - Verify Google Drive sharing settings
-   - Check if video URL is accessible
+4. **Environment Variables**:
+   - Ensure all required variables are set
+   - Check for typos in variable names
+   - Verify API keys are valid
 
-### Debug Mode
-Enable debug logging in development:
-```env
-NODE_ENV=development
-DEBUG=socket.io:*
+### Debug Commands
+
+```bash
+# Check backend logs
+render logs studybuddies-backend
+
+# Check frontend logs
+render logs studybuddies-frontend
+
+# View environment variables
+render env ls studybuddies-backend
 ```
 
-## 📈 Scaling Considerations
+## 📊 Monitoring
 
-### For High Traffic
-- Consider using Redis for Socket.IO adapter
-- Implement room cleanup for inactive sessions
-- Add rate limiting for API endpoints
-- Use CDN for static assets
+- **Health Check**: Visit `https://your-backend.onrender.com/health`
+- **Room Status**: Visit `https://your-backend.onrender.com/api/rooms`
+- **Render Dashboard**: Monitor performance and logs
 
-### Database Integration (Future)
-For persistent rooms and user management:
-- Add MongoDB/PostgreSQL
-- Implement user authentication
-- Store room history and preferences
+## 🔄 Updates
 
-## 🎯 Performance Optimization
+To update your deployment:
 
-### Frontend
-- Enable Vite build optimization
-- Use lazy loading for components
-- Optimize bundle size
+1. Push changes to GitHub
+2. Render will automatically redeploy
+3. Monitor the deployment logs for any issues
 
-### Backend
-- Enable compression
-- Implement caching headers
-- Use PM2 for process management
+## 🆘 Support
 
-## 📞 Support
-
-For issues and questions:
-1. Check the troubleshooting section
-2. Review server logs
-3. Test with minimal setup
-4. Create issue in repository
+- **Render Documentation**: [docs.render.com](https://docs.render.com)
+- **GitHub Issues**: Create issues in your repository
+- **Community**: Join Render's Discord community
 
 ---
 
-**Happy Deploying! 🚀** 
+**Happy Deploying! 🎉** 

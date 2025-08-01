@@ -12,5 +12,9 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: true
+  },
+  define: {
+    // Ensure environment variables are available at build time
+    'process.env': {}
   }
 }) 

@@ -1,0 +1,36 @@
+services:
+  # Backend API Service
+  - type: web
+    name: studybuddies-backend
+    env: node
+    plan: free
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: CORS_ORIGIN
+        sync: false
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: MONGO_URI
+        sync: false
+      - key: PEER_HOST
+        value: studybuddies-backend.onrender.com
+      - key: PEER_PORT
+        value: 443
+
+  # Frontend Service
+  - type: web
+    name: studybuddies-frontend
+    env: static
+    plan: free
+    buildCommand: cd client && npm install && npm run build
+    staticPublishPath: ./client/dist
+    envVars:
+      - key: VITE_SERVER_URL
+        value: https://studybuddies-backend.onrender.com
+      - key: VITE_GOOGLE_API_KEY
+        sync: false 
