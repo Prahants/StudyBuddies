@@ -15,6 +15,7 @@ An AI-enhanced group study application that integrates Gemini AI to provide real
 
 ## 🏗️ Architecture
 
+
 ```
 /client (React + Vite)
   ├── /components
@@ -139,6 +140,7 @@ cd server
 # Deploy to Railway or Render
 ```
 
+
 ## 🎓 Study Session Features
 
 - **Collaborative Learning**: Multiple students can join study rooms
@@ -160,16 +162,18 @@ MIT License - see LICENSE file for details
 
 ## 👥 Team
 
+<div align="center">
+
 <table>
   <tr>
-    <td align="center" style="padding: 20px;">
+    <td align="center" style="padding: 28px; background: none;">
       <div style="
         display: inline-block;
-        padding: 8px;
-        background: linear-gradient(135deg, #667eea, #764ba2);
+        padding: 9px;
+        background: linear-gradient(135deg, #ffdc80 20%, #fcaf45 40%, #f77737 60%, #fd1d1d 80%, #e1306c 90%, #c13584 95%, #833ab4 98%, #5851db 100%);
         border-radius: 50%;
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-        margin-bottom: 15px;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.22);
+        margin-bottom: 18px;
       ">
         <img 
           src="https://avatars.githubusercontent.com/u/157148580?s=400&u=e5114676a140e0ecdd7d169af1ad7c387cb36105&v=4" 
@@ -182,46 +186,49 @@ MIT License - see LICENSE file for details
             display: block;
             width: 120px;
             height: 120px;
-            border-radius: 50%;
             overflow: hidden;
             clip-path: circle(50%);
+            background: #fff;
           " 
           alt="Ritwika Banerjee"
         />
       </div>
       <br/>
-      <h3 style="
-        font-size: 20px; 
-        color: #667eea; 
+      <span style="
+        font-size: 20px;
+        color: #5851db;
         margin: 10px 0 5px 0;
         font-weight: 600;
         text-shadow: 0 2px 4px rgba(102, 126, 234, 0.1);
-      ">Ritwika Banerjee</h3>
-      <p style="
+        display: block;
+      ">Ritwika Banerjee</span>
+      <span style="
         color: #666; 
-        font-size: 14px; 
-        margin: 5px 0 10px 0;
+        font-size: 15px; 
+        margin: 5px 0 11px 0;
         font-style: italic;
-      ">Frontend Developer & Idea Creator</p>
+        display: block;
+      ">Frontend Developer & Idea Creator</span>
       <a href="https://github.com/RitwikaaBanerjee" style="
-        color: #667eea; 
+        color: #5851db;
         text-decoration: none;
         font-weight: 500;
-        padding: 8px 16px;
-        border-radius: 20px;
-        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-        border: 1px solid rgba(102, 126, 234, 0.2);
-        transition: all 0.3s ease;
+        padding: 8px 24px;
+        border-radius: 21px;
+        background: linear-gradient(135deg, rgba(102,126,234,0.10), rgba(118,75,162,0.09));
+        border: 1px solid rgba(102,126,234,0.13);
+        box-shadow: 0 1px 9px rgba(88,81,219,0.06);
+        transition: all 0.22s ease;
       ">@RitwikaaBanerjee</a>
     </td>
-    <td align="center" style="padding: 20px;">
+    <td align="center" style="padding: 28px;">
       <div style="
         display: inline-block;
-        padding: 8px;
-        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        padding: 9px;
+        background: linear-gradient(135deg, #6ee2f5 10%, #08aeea 40%, #2af598 90%);
         border-radius: 50%;
-        box-shadow: 0 8px 25px rgba(79, 172, 254, 0.3);
-        margin-bottom: 15px;
+        box-shadow: 0 8px 25px rgba(79, 172, 254, 0.18);
+        margin-bottom: 18px;
       ">
         <img 
           src="https://avatars.githubusercontent.com/u/114816986?s=400&u=975fea81731428cab862c28db7a1d2815568cfce&v=4" 
@@ -234,41 +241,46 @@ MIT License - see LICENSE file for details
             display: block;
             width: 120px;
             height: 120px;
-            border-radius: 50%;
             overflow: hidden;
             clip-path: circle(50%);
+            background: #fff;
           " 
           alt="Prashant Kumar"
         />
       </div>
       <br/>
-      <h3 style="
-        font-size: 20px; 
-        color: #4facfe; 
+      <span style="
+        font-size: 20px;
+        color: #08aeea;
         margin: 10px 0 5px 0;
         font-weight: 600;
         text-shadow: 0 2px 4px rgba(79, 172, 254, 0.1);
-      ">Prashant Kumar</h3>
-      <p style="
+        display: block;
+      ">Prashant Kumar</span>
+      <span style="
         color: #666; 
-        font-size: 14px; 
-        margin: 5px 0 10px 0;
+        font-size: 15px; 
+        margin: 5px 0 11px 0;
         font-style: italic;
-      ">AI Integration & Backend Developer</p>
+        display: block;
+      ">AI Integration & Backend Developer</span>
       <a href="https://github.com/prahants" style="
-        color: #4facfe; 
+        color: #08aeea;
         text-decoration: none;
         font-weight: 500;
-        padding: 8px 16px;
-        border-radius: 20px;
-        background: linear-gradient(135deg, rgba(79, 172, 254, 0.1), rgba(0, 242, 254, 0.1));
-        border: 1px solid rgba(79, 172, 254, 0.2);
-        transition: all 0.3s ease;
+        padding: 8px 24px;
+        border-radius: 21px;
+        background: linear-gradient(135deg, rgba(79,172,254,0.10), rgba(42,245,152,0.09));
+        border: 1px solid rgba(79,172,254,0.13);
+        box-shadow: 0 1px 9px rgba(8,174,234,0.06);
+        transition: all 0.22s ease;
       ">@prahants</a>
     </td>
   </tr>
 </table>
 
+</div>
+
 ## 🌟 About
 
-StudyBuddies is designed to revolutionize group study sessions by combining the power of AI with real-time collaboration. Whether you're preparing for exams, working on group projects, or simply need help understanding complex topics, StudyBuddies provides an innovative learning environment where students can connect, collaborate, and get instant clarity on their doubts from AI. 
+StudyBuddies is designed to revolutionize group study sessions by combining the power of AI with real-time collaboration. Whether you're preparing for exams, working on group projects, or simply need help understanding complex topics, StudyBuddies provides an innovative learning environment where students can connect, collaborate, and get instant clarity on their doubts from AI.
