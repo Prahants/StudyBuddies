@@ -162,19 +162,99 @@ MIT License - see LICENSE file for details
 
 <table>
   <tr>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/prahants/StudyBuddies/main/client/public/assets/ritwika.png" width="120" height="120" style="border-radius: 50%; border: 3px solid #667eea; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" alt="Ritwika Banerjee"/>
+    <td align="center" style="padding: 20px;">
+      <div style="
+        display: inline-block;
+        padding: 8px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 50%;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        margin-bottom: 15px;
+      ">
+        <img 
+          src="https://raw.githubusercontent.com/prahants/StudyBuddies/main/client/public/assets/ritwika.png" 
+          width="120" 
+          height="120" 
+          style="
+            border-radius: 50%;
+            border: 4px solid #fff;
+            object-fit: cover;
+            display: block;
+          " 
+          alt="Ritwika Banerjee"
+        />
+      </div>
       <br/>
-      <b style="font-size: 18px; color: #667eea;">Ritwika Banerjee</b><br/>
-      <sub style="color: #666; font-size: 14px;">Frontend Developer & Idea Creator</sub><br/>
-      <a href="https://github.com/RitwikaaBanerjee" style="color: #667eea; text-decoration: none;">@RitwikaaBanerjee</a>
+      <h3 style="
+        font-size: 20px; 
+        color: #667eea; 
+        margin: 10px 0 5px 0;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(102, 126, 234, 0.1);
+      ">Ritwika Banerjee</h3>
+      <p style="
+        color: #666; 
+        font-size: 14px; 
+        margin: 5px 0 10px 0;
+        font-style: italic;
+      ">Frontend Developer & Idea Creator</p>
+      <a href="https://github.com/RitwikaaBanerjee" style="
+        color: #667eea; 
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+        border: 1px solid rgba(102, 126, 234, 0.2);
+        transition: all 0.3s ease;
+      ">@RitwikaaBanerjee</a>
     </td>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/prahants/StudyBuddies/main/client/public/assets/prashant.png" width="120" height="120" style="border-radius: 50%; border: 3px solid #4facfe; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" alt="Prashant Kumar"/>
+    <td align="center" style="padding: 20px;">
+      <div style="
+        display: inline-block;
+        padding: 8px;
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        border-radius: 50%;
+        box-shadow: 0 8px 25px rgba(79, 172, 254, 0.3);
+        margin-bottom: 15px;
+      ">
+        <img 
+          src="https://raw.githubusercontent.com/prahants/StudyBuddies/main/client/public/assets/prashant.png" 
+          width="120" 
+          height="120" 
+          style="
+            border-radius: 50%;
+            border: 4px solid #fff;
+            object-fit: cover;
+            display: block;
+          " 
+          alt="Prashant Kumar"
+        />
+      </div>
       <br/>
-      <b style="font-size: 18px; color: #4facfe;">Prashant Kumar</b><br/>
-      <sub style="color: #666; font-size: 14px;">AI Integration & Backend Developer</sub><br/>
-      <a href="https://github.com/prahants" style="color: #4facfe; text-decoration: none;">@prahants</a>
+      <h3 style="
+        font-size: 20px; 
+        color: #4facfe; 
+        margin: 10px 0 5px 0;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(79, 172, 254, 0.1);
+      ">Prashant Kumar</h3>
+      <p style="
+        color: #666; 
+        font-size: 14px; 
+        margin: 5px 0 10px 0;
+        font-style: italic;
+      ">AI Integration & Backend Developer</p>
+      <a href="https://github.com/prahants" style="
+        color: #4facfe; 
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(79, 172, 254, 0.1), rgba(0, 242, 254, 0.1));
+        border: 1px solid rgba(79, 172, 254, 0.2);
+        transition: all 0.3s ease;
+      ">@prahants</a>
     </td>
   </tr>
 </table>
