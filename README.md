@@ -164,107 +164,62 @@ MIT License - see LICENSE file for details
   <tr>
     <td align="center" style="padding: 20px;">
       <div style="
-        display: inline-block;
-        padding: 8px;
-        background: linear-gradient(135deg, #667eea, #764ba2);
+        width: 130px;
+        height: 130px;
         border-radius: 50%;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         margin-bottom: 15px;
       ">
         <img 
-          src="https://avatars.githubusercontent.com/u/157148580?s=400&u=e5114676a140e0ecdd7d169af1ad7c387cb36105&v=4" 
-          width="120" 
-          height="120" 
+          src="https://raw.githubusercontent.com/prahants/StudyBuddies/main/client/public/assets/ritwika.png" 
+          alt="Ritwika Banerjee"
           style="
-            border-radius: 50%;
-            border: 4px solid #fff;
-            object-fit: cover;
-            display: block;
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            overflow: hidden;
-            clip-path: circle(50%);
-          " 
-          alt="Ritwika Banerjee"
+            object-fit: cover;
+            border: 2px solid #fff;
+          "
         />
       </div>
-      <br/>
-      <h3 style="
-        font-size: 20px; 
-        color: #667eea; 
-        margin: 10px 0 5px 0;
-        font-weight: 600;
-        text-shadow: 0 2px 4px rgba(102, 126, 234, 0.1);
-      ">Ritwika Banerjee</h3>
-      <p style="
-        color: #666; 
-        font-size: 14px; 
-        margin: 5px 0 10px 0;
-        font-style: italic;
-      ">Frontend Developer & Idea Creator</p>
-      <a href="https://github.com/RitwikaaBanerjee" style="
-        color: #667eea; 
-        text-decoration: none;
-        font-weight: 500;
-        padding: 8px 16px;
-        border-radius: 20px;
-        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-        border: 1px solid rgba(102, 126, 234, 0.2);
-        transition: all 0.3s ease;
-      ">@RitwikaaBanerjee</a>
+      <b style="font-size: 18px;">Ritwika Banerjee</b><br/>
+      <sub>Frontend Developer & Idea Creator</sub><br/>
+      <a href="https://github.com/RitwikaaBanerjee">@RitwikaaBanerjee</a>
     </td>
+    
     <td align="center" style="padding: 20px;">
       <div style="
-        display: inline-block;
-        padding: 8px;
-        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        width: 130px;
+        height: 130px;
         border-radius: 50%;
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         box-shadow: 0 8px 25px rgba(79, 172, 254, 0.3);
         margin-bottom: 15px;
       ">
         <img 
-          src="https://avatars.githubusercontent.com/u/114816986?s=400&u=975fea81731428cab862c28db7a1d2815568cfce&v=4" 
-          width="120" 
-          height="120" 
+          src="https://raw.githubusercontent.com/prahants/StudyBuddies/main/client/public/assets/prashant.png" 
+          alt="Prashant Kumar"
           style="
-            border-radius: 50%;
-            border: 4px solid #fff;
-            object-fit: cover;
-            display: block;
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            overflow: hidden;
-            clip-path: circle(50%);
-          " 
-          alt="Prashant Kumar"
+            object-fit: cover;
+            border: 2px solid #fff;
+          "
         />
       </div>
-      <br/>
-      <h3 style="
-        font-size: 20px; 
-        color: #4facfe; 
-        margin: 10px 0 5px 0;
-        font-weight: 600;
-        text-shadow: 0 2px 4px rgba(79, 172, 254, 0.1);
-      ">Prashant Kumar</h3>
-      <p style="
-        color: #666; 
-        font-size: 14px; 
-        margin: 5px 0 10px 0;
-        font-style: italic;
-      ">AI Integration & Backend Developer</p>
-      <a href="https://github.com/prahants" style="
-        color: #4facfe; 
-        text-decoration: none;
-        font-weight: 500;
-        padding: 8px 16px;
-        border-radius: 20px;
-        background: linear-gradient(135deg, rgba(79, 172, 254, 0.1), rgba(0, 242, 254, 0.1));
-        border: 1px solid rgba(79, 172, 254, 0.2);
-        transition: all 0.3s ease;
-      ">@prahants</a>
+      <b style="font-size: 18px;">Prashant Kumar</b><br/>
+      <sub>AI Integration & Backend Developer</sub><br/>
+      <a href="https://github.com/prahants">@prahants</a>
     </td>
   </tr>
 </table>
