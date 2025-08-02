@@ -303,21 +303,6 @@ MIT License - see LICENSE file for details
   </tr>
 </table>
 
-<style>
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.team-card:hover .profile-border {
-  transform: scale(1.05);
-  box-shadow: 
-    0 15px 35px rgba(255, 107, 107, 0.4),
-    0 0 25px rgba(255, 142, 83, 0.3),
-    inset 0 2px 4px rgba(255, 255, 255, 0.2);
-}
-</style>
 
 </div>
 
