@@ -180,6 +180,11 @@ MIT License - see LICENSE file for details
             border: 4px solid #fff;
             object-fit: cover;
             display: block;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            clip-path: circle(50%);
           " 
           alt="Ritwika Banerjee"
         />
@@ -227,6 +232,11 @@ MIT License - see LICENSE file for details
             border: 4px solid #fff;
             object-fit: cover;
             display: block;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            clip-path: circle(50%);
           " 
           alt="Prashant Kumar"
         />
