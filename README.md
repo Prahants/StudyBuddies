@@ -158,6 +158,10 @@ cd server
 
 MIT License - see LICENSE file for details
 
+## Team
+Ritwika :- https://github.com/RitwikaaBanerjee
+Prashant :- https://github.com/prahants
+
 ## 🌟 About
 
 StudyBuddies is designed to revolutionize group study sessions by combining the power of AI with real-time collaboration. Whether you're preparing for exams, working on group projects, or simply need help understanding complex topics, StudyBuddies provides an innovative learning environment where students can connect, collaborate, and get instant clarity on their doubts from AI. 
