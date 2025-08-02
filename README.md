@@ -163,18 +163,18 @@ MIT License - see LICENSE file for details
 <table>
   <tr>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/prahants/StudyBuddies/main/client/public/assets/ritwika.png" width="120" height="120" style="border-radius: 12px;" alt="Ritwika Banerjee"/>
+      <img src="https://raw.githubusercontent.com/prahants/StudyBuddies/main/client/public/assets/ritwika.png" width="120" height="120" style="border-radius: 50%; border: 3px solid #667eea; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" alt="Ritwika Banerjee"/>
       <br/>
-      <b>Ritwika Banerjee</b><br/>
-      <sub>Frontend Developer & Idea Creator</sub><br/>
-      <a href="https://github.com/RitwikaaBanerjee">@RitwikaaBanerjee</a>
+      <b style="font-size: 18px; color: #667eea;">Ritwika Banerjee</b><br/>
+      <sub style="color: #666; font-size: 14px;">Frontend Developer & Idea Creator</sub><br/>
+      <a href="https://github.com/RitwikaaBanerjee" style="color: #667eea; text-decoration: none;">@RitwikaaBanerjee</a>
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/prahants/StudyBuddies/main/client/public/assets/prashant.png" width="120" height="120" style="border-radius: 12px;" alt="Prashant Kumar"/>
+      <img src="https://raw.githubusercontent.com/prahants/StudyBuddies/main/client/public/assets/prashant.png" width="120" height="120" style="border-radius: 50%; border: 3px solid #4facfe; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" alt="Prashant Kumar"/>
       <br/>
-      <b>Prashant Kumar</b><br/>
-      <sub>AI Integration & Backend Developer</sub><br/>
-      <a href="https://github.com/prahants">@prahants</a>
+      <b style="font-size: 18px; color: #4facfe;">Prashant Kumar</b><br/>
+      <sub style="color: #666; font-size: 14px;">AI Integration & Backend Developer</sub><br/>
+      <a href="https://github.com/prahants" style="color: #4facfe; text-decoration: none;">@prahants</a>
     </td>
   </tr>
 </table>
