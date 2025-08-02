@@ -139,6 +139,7 @@ cd server
 # Deploy to Railway or Render
 ```
 
+
 ## 🎓 Study Session Features
 
 - **Collaborative Learning**: Multiple students can join study rooms
@@ -164,145 +165,118 @@ MIT License - see LICENSE file for details
 
 <table>
   <tr>
-    <td align="center" style="padding: 40px; background: transparent;">
+    <td align="center" style="padding: 28px; background: none;">
       <div style="
         display: inline-block;
-        padding: 6px;
-        background: linear-gradient(45deg, #ff6b6b, #ff8e53, #ff6b9d, #c44569, #f8b500, #e55039, #3c40c6, #05c46b);
-        background-size: 300% 300%;
-        animation: gradientShift 3s ease infinite;
+        padding: 9px;
+        background: linear-gradient(135deg, #ffdc80 20%, #fcaf45 40%, #f77737 60%, #fd1d1d 80%, #e1306c 90%, #c13584 95%, #833ab4 98%, #5851db 100%);
         border-radius: 50%;
-        box-shadow: 
-          0 10px 30px rgba(255, 107, 107, 0.3),
-          0 0 20px rgba(255, 142, 83, 0.2),
-          inset 0 2px 4px rgba(255, 255, 255, 0.1);
-        margin-bottom: 25px;
-        transform: scale(1);
-        transition: all 0.3s ease;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.22);
+        margin-bottom: 18px;
       ">
         <img 
           src="https://avatars.githubusercontent.com/u/157148580?s=400&u=e5114676a140e0ecdd7d169af1ad7c387cb36105&v=4" 
-          width="140" 
-          height="140" 
+          width="120" 
+          height="120" 
           style="
             border-radius: 50%;
-            border: 5px solid #ffffff;
+            border: 4px solid #fff;
             object-fit: cover;
             display: block;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            filter: brightness(1.05) contrast(1.1);
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
             clip-path: circle(50%);
-            aspect-ratio: 1;
+            background: #fff;
           " 
-          alt="Ritwika Banerjee Profile Picture"
+          alt="Ritwika Banerjee"
         />
       </div>
-      <h3 style="
-        font-size: 24px;
-        color: #2c3e50;
-        margin: 15px 0 8px 0;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        text-shadow: 0 2px 8px rgba(44, 62, 80, 0.1);
-      ">Ritwika Banerjee</h3>
-      <p style="
-        color: #7f8c8d; 
-        font-size: 16px; 
-        margin: 8px 0 20px 0;
-        font-style: italic;
-        font-weight: 500;
-      ">Frontend Developer & Idea Creator</p>
-      <a href="https://github.com/RitwikaaBanerjee" style="
-        color: #ffffff;
-        text-decoration: none;
+      <br/>
+      <span style="
+        font-size: 20px;
+        color: #5851db;
+        margin: 10px 0 5px 0;
         font-weight: 600;
-        padding: 12px 30px;
-        border-radius: 25px;
-        background: linear-gradient(135deg, #ff6b6b, #ff8e53);
-        border: none;
-        box-shadow: 
-          0 8px 20px rgba(255, 107, 107, 0.3),
-          0 2px 4px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-        display: inline-block;
-        transform: translateY(0);
-      " 
-      onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 25px rgba(255, 107, 107, 0.4), 0 4px 8px rgba(0, 0, 0, 0.15)';"
-      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 20px rgba(255, 107, 107, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1)';">
-        @RitwikaaBanerjee
-      </a>
+        text-shadow: 0 2px 4px rgba(102, 126, 234, 0.1);
+        display: block;
+      ">Ritwika Banerjee</span>
+      <span style="
+        color: #666; 
+        font-size: 15px; 
+        margin: 5px 0 11px 0;
+        font-style: italic;
+        display: block;
+      ">Frontend Developer & Idea Creator</span>
+      <a href="https://github.com/RitwikaaBanerjee" style="
+        color: #5851db;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 24px;
+        border-radius: 21px;
+        background: linear-gradient(135deg, rgba(102,126,234,0.10), rgba(118,75,162,0.09));
+        border: 1px solid rgba(102,126,234,0.13);
+        box-shadow: 0 1px 9px rgba(88,81,219,0.06);
+        transition: all 0.22s ease;
+      ">@RitwikaaBanerjee</a>
     </td>
-    <td align="center" style="padding: 40px; background: transparent;">
+    <td align="center" style="padding: 28px;">
       <div style="
         display: inline-block;
-        padding: 6px;
-        background: linear-gradient(45deg, #25d366, #128c7e, #075e54, #34b7f1, #00d4aa, #26c6da, #00acc1, #0097a7);
-        background-size: 300% 300%;
-        animation: gradientShift 3s ease infinite;
+        padding: 9px;
+        background: linear-gradient(135deg, #6ee2f5 10%, #08aeea 40%, #2af598 90%);
         border-radius: 50%;
-        box-shadow: 
-          0 10px 30px rgba(37, 211, 102, 0.3),
-          0 0 20px rgba(18, 140, 126, 0.2),
-          inset 0 2px 4px rgba(255, 255, 255, 0.1);
-        margin-bottom: 25px;
-        transform: scale(1);
-        transition: all 0.3s ease;
+        box-shadow: 0 8px 25px rgba(79, 172, 254, 0.18);
+        margin-bottom: 18px;
       ">
         <img 
           src="https://avatars.githubusercontent.com/u/114816986?s=400&u=975fea81731428cab862c28db7a1d2815568cfce&v=4" 
-          width="140" 
-          height="140" 
+          width="120" 
+          height="120" 
           style="
             border-radius: 50%;
-            border: 5px solid #ffffff;
+            border: 4px solid #fff;
             object-fit: cover;
             display: block;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            filter: brightness(1.05) contrast(1.1);
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
             clip-path: circle(50%);
-            aspect-ratio: 1;
+            background: #fff;
           " 
-          alt="Prashant Kumar Profile Picture"
+          alt="Prashant Kumar"
         />
       </div>
-      <h3 style="
-        font-size: 24px;
-        color: #2c3e50;
-        margin: 15px 0 8px 0;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        text-shadow: 0 2px 8px rgba(44, 62, 80, 0.1);
-      ">Prashant Kumar</h3>
-      <p style="
-        color: #7f8c8d; 
-        font-size: 16px; 
-        margin: 8px 0 20px 0;
-        font-style: italic;
-        font-weight: 500;
-      ">AI Integration & Backend Developer</p>
-      <a href="https://github.com/prahants" style="
-        color: #ffffff;
-        text-decoration: none;
+      <br/>
+      <span style="
+        font-size: 20px;
+        color: #08aeea;
+        margin: 10px 0 5px 0;
         font-weight: 600;
-        padding: 12px 30px;
-        border-radius: 25px;
-        background: linear-gradient(135deg, #25d366, #128c7e);
-        border: none;
-        box-shadow: 
-          0 8px 20px rgba(37, 211, 102, 0.3),
-          0 2px 4px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-        display: inline-block;
-        transform: translateY(0);
-      "
-      onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 25px rgba(37, 211, 102, 0.4), 0 4px 8px rgba(0, 0, 0, 0.15)';"
-      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 20px rgba(37, 211, 102, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1)';">
-        @prahants
-      </a>
+        text-shadow: 0 2px 4px rgba(79, 172, 254, 0.1);
+        display: block;
+      ">Prashant Kumar</span>
+      <span style="
+        color: #666; 
+        font-size: 15px; 
+        margin: 5px 0 11px 0;
+        font-style: italic;
+        display: block;
+      ">AI Integration & Backend Developer</span>
+      <a href="https://github.com/prahants" style="
+        color: #08aeea;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 24px;
+        border-radius: 21px;
+        background: linear-gradient(135deg, rgba(79,172,254,0.10), rgba(42,245,152,0.09));
+        border: 1px solid rgba(79,172,254,0.13);
+        box-shadow: 0 1px 9px rgba(8,174,234,0.06);
+        transition: all 0.22s ease;
+      ">@prahants</a>
     </td>
   </tr>
 </table>
-
 
 </div>
 
