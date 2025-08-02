@@ -191,6 +191,8 @@ MIT License - see LICENSE file for details
             display: block;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             filter: brightness(1.05) contrast(1.1);
+            clip-path: circle(50%);
+            aspect-ratio: 1;
           " 
           alt="Ritwika Banerjee Profile Picture"
         />
@@ -257,6 +259,8 @@ MIT License - see LICENSE file for details
             display: block;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             filter: brightness(1.05) contrast(1.1);
+            clip-path: circle(50%);
+            aspect-ratio: 1;
           " 
           alt="Prashant Kumar Profile Picture"
         />
