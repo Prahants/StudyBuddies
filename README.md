@@ -158,9 +158,26 @@ cd server
 
 MIT License - see LICENSE file for details
 
-## Team
-Ritwika :- https://github.com/RitwikaaBanerjee
-Prashant :- https://github.com/prahants
+## 👥 Team
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/prahants/StudyBuddies/main/client/public/assets/ritwika.png" width="120" height="120" style="border-radius: 12px;" alt="Ritwika Banerjee"/>
+      <br/>
+      <b>Ritwika Banerjee</b><br/>
+      <sub>Frontend Developer & Idea Creator</sub><br/>
+      <a href="https://github.com/RitwikaaBanerjee">@RitwikaaBanerjee</a>
+    </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/prahants/StudyBuddies/main/client/public/assets/prashant.png" width="120" height="120" style="border-radius: 12px;" alt="Prashant Kumar"/>
+      <br/>
+      <b>Prashant Kumar</b><br/>
+      <sub>AI Integration & Backend Developer</sub><br/>
+      <a href="https://github.com/prahants">@prahants</a>
+    </td>
+  </tr>
+</table>
 
 ## 🌟 About
 
