@@ -172,7 +172,7 @@ MIT License - see LICENSE file for details
         margin-bottom: 15px;
       ">
         <img 
-          src="https://raw.githubusercontent.com/prahants/StudyBuddies/main/client/public/assets/ritwika.png" 
+          src="https://avatars.githubusercontent.com/u/157148580?s=400&u=e5114676a140e0ecdd7d169af1ad7c387cb36105&v=4" 
           width="120" 
           height="120" 
           style="
@@ -219,7 +219,7 @@ MIT License - see LICENSE file for details
         margin-bottom: 15px;
       ">
         <img 
-          src="https://raw.githubusercontent.com/prahants/StudyBuddies/main/client/public/assets/prashant.png" 
+          src="https://avatars.githubusercontent.com/u/114816986?s=400&u=975fea81731428cab862c28db7a1d2815568cfce&v=4" 
           width="120" 
           height="120" 
           style="
